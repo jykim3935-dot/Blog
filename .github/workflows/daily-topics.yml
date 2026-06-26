@@ -1,8 +1,18 @@
 name: 일일 글감 추천
 
 on:
+  # 코드/설정이 바뀌면 실행(= 워크플로 등록을 보장하고, 설정 변경 시 즉시 갱신).
+  # reports/** 는 제외 — 자기 자신이 만든 리포트 커밋으로 재실행되는 것을 막음.
+  push:
+    branches:
+      - claude/techblog-content-agent-k5x5fq
+    paths:
+      - "src/**"
+      - "config/**"
+      - "requirements.txt"
+      - ".github/workflows/daily-topics.yml"
+  # 매일 KST 오전 8시 (UTC 23:00)
   schedule:
-    # 매일 KST 오전 8시 (UTC 23:00). UTC 기준이라 전날 23시로 적습니다.
     - cron: "0 23 * * *"
   workflow_dispatch:
     inputs:
@@ -38,7 +48,13 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           EXTRA_SOURCE_URLS: ${{ github.event.inputs.extra_urls }}
-        run: python -m src.main
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::warning::ANTHROPIC_API_KEY 시크릿이 없어 글감 생성을 건너뜁니다."
+            echo "Settings → Secrets and variables → Actions 에 키를 등록한 뒤 다시 실행하세요."
+            exit 0
+          fi
+          python -m src.main
 
       - name: 리포트 커밋 & 푸시
         run: |
