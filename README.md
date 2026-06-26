@@ -50,26 +50,22 @@ python -m src.main
 
 ---
 
-## 배포 (Cafe24 호스팅)
+## 배포 (Vercel)
 
-생성된 리포트(`reports/` 의 HTML)를 카페24 호스팅으로 **FTP 자동 배포**합니다.
-`reports/` 가 갱신되면 `.github/workflows/deploy-cafe24.yml` 이 실행돼 파일을 올립니다.
+생성된 리포트(`reports/` 의 HTML)를 **Vercel로 자동 배포**합니다.
+별도 워크플로나 토큰 없이, Vercel의 GitHub 연동이 push마다 자동 배포합니다.
 
-**필요한 설정 — GitHub Secret 등록 (1회):**
-Settings → Secrets and variables → Actions 에서 아래를 추가하세요.
+**설정 — 1회만 (약 1분):**
 
-| 이름 | 값 | 비고 |
-| --- | --- | --- |
-| `CAFE24_FTP_SERVER` | `naace1.mycafe24.com` | FTP 호스트 |
-| `CAFE24_FTP_USERNAME` | 카페24 FTP 아이디 | |
-| `CAFE24_FTP_PASSWORD` | 카페24 FTP 비밀번호 | **채팅에 붙여넣지 말 것** |
-| `CAFE24_FTP_DIR` | `/www/` (선택) | 웹 루트가 다르면 지정, 끝에 `/` 필수 |
-| `CAFE24_FTP_PROTOCOL` | `ftp` (선택) | FTPS 사용 시 `ftps` |
-| `CAFE24_FTP_PORT` | `21` (선택) | |
+1. https://vercel.com 로그인 → **Add New… → Project**
+2. GitHub 저장소 `jykim3935-dot/Blog` 를 **Import**
+3. 설정은 그대로 두고 **Deploy** (저장소의 `vercel.json` 이 자동 적용됨)
+   - `outputDirectory: reports` → `reports/` 폴더를 정적 사이트로 서빙
+   - `cleanUrls: true` → `/2026-06-26` 처럼 깔끔한 주소
 
-등록 후에는 리포트가 만들어질 때마다 자동 업로드되며,
-**Actions → "Cafe24 FTP 배포" → Run workflow** 로 수동 배포도 됩니다.
-사이트의 모든 링크는 상대경로라 어떤 경로(루트/하위폴더)에 올려도 동작합니다.
+이후 리포트가 커밋될 때마다 Vercel이 자동으로 다시 배포합니다.
+배포 주소(예: `https://blog-xxxx.vercel.app`)는 Vercel 대시보드에서 확인하며,
+원하는 도메인을 연결할 수도 있습니다. 모든 링크는 상대경로라 그대로 동작합니다.
 
 ---
 
