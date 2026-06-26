@@ -9,9 +9,11 @@ from .config import CONFIG_DIR
 
 THEME_PATH = CONFIG_DIR / "report_theme.css"
 FONT_LINK = (
-    '<link rel="stylesheet" '
-    'href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/'
-    'dist/web/static/pretendard.min.css">'
+    '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
+    "family=Playfair+Display:ital,wght@0,700;0,900;1,700&"
+    "family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap\">"
 )
 
 
