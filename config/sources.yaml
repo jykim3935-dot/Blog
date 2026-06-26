@@ -1,0 +1,94 @@
+# =============================================================================
+# 수집 소스 설정
+# -----------------------------------------------------------------------------
+# 외신, AI 커뮤니티, 레딧, 아카이브, MLPerf, 엔비디아/빅테크 블로그 등.
+# 필요 없는 소스는 주석 처리하거나 지우고, 원하는 RSS 피드를 추가하세요.
+# =============================================================================
+
+# -------------------------------------------------------------------------
+# RSS / Atom 피드 (외신 + 빅테크/연구소 블로그)
+# -------------------------------------------------------------------------
+rss:
+  limit_per_feed: 12          # 피드당 최근 항목 수
+  feeds:
+    # --- 유명 외신 / 테크 미디어 ---
+    - { name: "TechCrunch AI",        url: "https://techcrunch.com/category/artificial-intelligence/feed/" }
+    - { name: "The Verge (AI)",       url: "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml" }
+    - { name: "Ars Technica (AI)",    url: "https://arstechnica.com/ai/feed/" }
+    - { name: "VentureBeat AI",       url: "https://venturebeat.com/category/ai/feed/" }
+    - { name: "MIT Tech Review",      url: "https://www.technologyreview.com/feed/" }
+    - { name: "WIRED",                url: "https://www.wired.com/feed/tag/ai/latest/rss" }
+
+    # --- AI 권위 매체 / 뉴스레터 ---
+    - { name: "Import AI (Jack Clark)", url: "https://jack-clark.net/feed/" }
+    - { name: "MarkTechPost",         url: "https://www.marktechpost.com/feed/" }
+    - { name: "The Gradient",         url: "https://thegradient.pub/rss/" }
+
+    # --- 빅테크 / 연구소 블로그 ---
+    - { name: "OpenAI Blog",          url: "https://openai.com/news/rss.xml" }
+    - { name: "Google AI Blog",       url: "https://blog.google/technology/ai/rss/" }
+    - { name: "Google DeepMind",      url: "https://deepmind.google/blog/rss.xml" }
+    - { name: "Meta AI",              url: "https://ai.meta.com/blog/rss/" }
+    - { name: "Microsoft Research",   url: "https://www.microsoft.com/en-us/research/feed/" }
+    - { name: "AWS ML Blog",          url: "https://aws.amazon.com/blogs/machine-learning/feed/" }
+    - { name: "Hugging Face Blog",    url: "https://huggingface.co/blog/feed.xml" }
+
+    # --- NVIDIA / 인프라 / 하드웨어 ---
+    - { name: "NVIDIA Tech Blog",     url: "https://developer.nvidia.com/blog/feed/" }
+    - { name: "NVIDIA Blog",          url: "https://blogs.nvidia.com/feed/" }
+
+# -------------------------------------------------------------------------
+# arXiv (최신 논문)
+# -------------------------------------------------------------------------
+arxiv:
+  max_results: 25
+  categories:
+    - cs.AI       # 인공지능
+    - cs.LG       # 머신러닝
+    - cs.CL       # 자연어처리
+    - cs.CV       # 컴퓨터비전
+
+# -------------------------------------------------------------------------
+# Reddit (AI 커뮤니티)
+# -------------------------------------------------------------------------
+reddit:
+  time: "day"          # day / week
+  limit_per_sub: 12
+  subreddits:
+    - MachineLearning
+    - LocalLLaMA
+    - artificial
+    - LanguageTechnology
+
+# -------------------------------------------------------------------------
+# Hacker News (Algolia API)
+# -------------------------------------------------------------------------
+hackernews:
+  min_points: 50
+  limit: 25
+  queries:
+    - "AI"
+    - "LLM"
+    - "GPU"
+    - "inference"
+    - "machine learning"
+    - "open source model"
+
+# -------------------------------------------------------------------------
+# MLPerf / MLCommons
+# -------------------------------------------------------------------------
+extra_rss:
+  limit_per_feed: 8
+  feeds:
+    - { name: "MLCommons (MLPerf)",   url: "https://mlcommons.org/feed/" }
+
+# -------------------------------------------------------------------------
+# 내가 직접 넣는 소스 URL
+# -------------------------------------------------------------------------
+# 1) 아래 custom_urls 리스트에 추가하거나
+# 2) config/my_sources.txt 파일에 한 줄에 하나씩 적거나
+# 3) 워크플로 수동 실행 시 EXTRA_SOURCE_URLS(쉼표구분) 환경변수로 전달
+# 일반 웹페이지면 제목/설명을 추출하고, RSS 피드면 항목들을 가져옵니다.
+custom_urls:
+  # - "https://example.com/some-article"
+  # - "https://someblog.com/feed/"

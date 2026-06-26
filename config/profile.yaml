@@ -1,0 +1,84 @@
+# =============================================================================
+# 아크릴(Acryl) 테크블로그 주제 추천을 위한 회사/관심분야 프로파일
+# -----------------------------------------------------------------------------
+# 이 파일을 수정하면 추천 주제의 방향이 바뀝니다.
+# LLM이 수집된 기사들을 "이 프로파일과 얼마나 관련 있는가" 기준으로 평가합니다.
+# 자유롭게 회사 상황/관심사에 맞게 고쳐 쓰세요.
+# =============================================================================
+
+company:
+  name: "아크릴 (Acryl Inc.)"
+  one_liner: >-
+    국내 인공지능 전문 기업. 토탈 AI 플랫폼 'Jonathan(조나단)'을 중심으로
+    엔터프라이즈 AI, 감성지능(Emotion AI), 헬스케어 AI, MLOps,
+    초거대/생성형 AI를 다룬다.
+
+# 블로그가 다루고 싶은 핵심 분야 (관련도 평가의 1순위 기준)
+focus_areas:
+  - "대규모 언어모델(LLM) / 생성형 AI / 멀티모달"
+  - "RAG, 에이전트(Agent), 툴 유즈, 프롬프트 엔지니어링"
+  - "MLOps, 모델 서빙/배포, 추론 최적화, 모델 경량화/양자화"
+  - "AI 인프라: GPU, 가속기, 분산학습, 클러스터, 데이터센터"
+  - "AI 플랫폼 / 엔터프라이즈 AI 도입 사례"
+  - "감성지능 / 감정 인식 / 멀티모달 감성 AI"
+  - "헬스케어·의료 AI, 바이오 AI"
+  - "벤치마크 / 평가 (MLPerf, 모델 리더보드, 평가 방법론)"
+  - "AI 안전성, 정렬(alignment), 거버넌스, 규제 동향"
+  - "온디바이스 AI / 엣지 AI / SLM(소형 언어모델)"
+
+# 관련도 가산점을 주는 키워드 (1차 필터링용 - 사전 점수에 반영)
+keywords:
+  - LLM
+  - GPT
+  - Claude
+  - Gemini
+  - Llama
+  - transformer
+  - diffusion
+  - multimodal
+  - RAG
+  - agent
+  - agentic
+  - fine-tuning
+  - inference
+  - quantization
+  - distillation
+  - MLOps
+  - serving
+  - vLLM
+  - GPU
+  - CUDA
+  - NVIDIA
+  - TPU
+  - benchmark
+  - MLPerf
+  - evaluation
+  - alignment
+  - safety
+  - reasoning
+  - embedding
+  - vector
+  - emotion
+  - healthcare
+  - medical
+  - "on-device"
+  - edge
+  - SLM
+  - foundation model
+  - open source
+  - 생성형
+  - 거대언어모델
+  - 감성
+
+# 추천에서 제외하고 싶은 주제 (관련 없으면 거름)
+avoid:
+  - "단순 주가/투자 루머"
+  - "특정 제품 단순 홍보/광고성 보도자료"
+  - "AI와 무관한 일반 IT 가십"
+
+# 블로그 톤 & 독자
+audience: "AI 엔지니어, 연구자, 그리고 AI 도입을 고민하는 기업 실무자"
+tone: "기술적으로 깊이 있으면서도 실무에 도움이 되는, 인사이트 중심"
+
+# 하루에 추천받을 주제 개수
+topics_per_day: 8

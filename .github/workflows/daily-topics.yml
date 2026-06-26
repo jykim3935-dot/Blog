@@ -1,0 +1,53 @@
+name: 일일 글감 추천
+
+on:
+  schedule:
+    # 매일 KST 오전 8시 (UTC 23:00). UTC 기준이라 전날 23시로 적습니다.
+    - cron: "0 23 * * *"
+  workflow_dispatch:
+    inputs:
+      extra_urls:
+        description: "추가로 분석할 소스 URL (쉼표로 구분)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-topics
+  cancel-in-progress: false
+
+jobs:
+  recommend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 의존성 설치
+        run: pip install -r requirements.txt
+
+      - name: 글감 추천 실행
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          EXTRA_SOURCE_URLS: ${{ github.event.inputs.extra_urls }}
+        run: python -m src.main
+
+      - name: 리포트 커밋 & 푸시
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports/
+          if git diff --cached --quiet; then
+            echo "변경사항 없음 — 커밋 건너뜀"
+          else
+            git commit -m "chore: 일일 글감 추천 리포트 $(date -u +%Y-%m-%d)"
+            git push
+          fi
