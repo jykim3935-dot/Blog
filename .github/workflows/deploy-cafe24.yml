@@ -1,0 +1,44 @@
+name: Cafe24 FTP 배포
+
+on:
+  # reports 폴더/테마가 바뀌면(=새 리포트 커밋 시) 자동 배포
+  push:
+    branches:
+      - claude/techblog-content-agent-k5x5fq
+    paths:
+      - "reports/**"
+      - "config/report_theme.css"
+      - ".github/workflows/deploy-cafe24.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: cafe24-deploy
+  cancel-in-progress: true
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Cafe24로 FTP 업로드
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.CAFE24_FTP_SERVER }}
+          username: ${{ secrets.CAFE24_FTP_USERNAME }}
+          password: ${{ secrets.CAFE24_FTP_PASSWORD }}
+          # 카페24는 기본 FTP(평문). FTPS를 켜뒀다면 secrets로 'ftps' 지정 가능
+          protocol: ${{ secrets.CAFE24_FTP_PROTOCOL || 'ftp' }}
+          port: ${{ secrets.CAFE24_FTP_PORT || 21 }}
+          # 올릴 폴더(끝에 / 필수)
+          local-dir: ./reports/
+          # 카페24 웹 루트(보통 /www/). 다르면 CAFE24_FTP_DIR 시크릿으로 지정(끝에 / 필수)
+          server-dir: ${{ secrets.CAFE24_FTP_DIR || '/www/' }}
+          # 웹에 불필요한 파일은 업로드 제외
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/*.md
+            **/*.json
+            **/.gitkeep

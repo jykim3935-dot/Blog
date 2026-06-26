@@ -50,6 +50,29 @@ python -m src.main
 
 ---
 
+## 배포 (Cafe24 호스팅)
+
+생성된 리포트(`reports/` 의 HTML)를 카페24 호스팅으로 **FTP 자동 배포**합니다.
+`reports/` 가 갱신되면 `.github/workflows/deploy-cafe24.yml` 이 실행돼 파일을 올립니다.
+
+**필요한 설정 — GitHub Secret 등록 (1회):**
+Settings → Secrets and variables → Actions 에서 아래를 추가하세요.
+
+| 이름 | 값 | 비고 |
+| --- | --- | --- |
+| `CAFE24_FTP_SERVER` | `naace1.mycafe24.com` | FTP 호스트 |
+| `CAFE24_FTP_USERNAME` | 카페24 FTP 아이디 | |
+| `CAFE24_FTP_PASSWORD` | 카페24 FTP 비밀번호 | **채팅에 붙여넣지 말 것** |
+| `CAFE24_FTP_DIR` | `/www/` (선택) | 웹 루트가 다르면 지정, 끝에 `/` 필수 |
+| `CAFE24_FTP_PROTOCOL` | `ftp` (선택) | FTPS 사용 시 `ftps` |
+| `CAFE24_FTP_PORT` | `21` (선택) | |
+
+등록 후에는 리포트가 만들어질 때마다 자동 업로드되며,
+**Actions → "Cafe24 FTP 배포" → Run workflow** 로 수동 배포도 됩니다.
+사이트의 모든 링크는 상대경로라 어떤 경로(루트/하위폴더)에 올려도 동작합니다.
+
+---
+
 ## 설정 커스터마이즈
 
 모든 설정은 `config/` 폴더에 있습니다. 코드를 건드릴 필요가 없습니다.
