@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>아크릴 글감 추천 2026-06-26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Noto+Serif+KR:wght@400;500;600;700;900&display=swap">
+<style>
+/* =============================================================================
+   리포트 테마 — 에디토리얼/신문(인쇄물) 미감
+   이 파일 하나만 고치면 HTML 리포트 디자인이 통째로 바뀝니다.
+   색/폰트/간격은 아래 :root 변수에서 조정하세요.
+   ============================================================================= */
+:root {
+  --paper:  #f3efe5;   /* 종이(크림) 바탕 */
+  --ink:    #1b1a17;   /* 잉크(검정) */
+  --muted:  #56524a;   /* 보조 글자 */
+  --rule:   #1b1a17;   /* 굵은 괘선 */
+  --hair:   #c9c1ae;   /* 가는 괘선 */
+  --accent: #7c2128;   /* 옥스블러드(신문 강조색) */
+  --maxw:   840px;
+  --serif:   "Noto Serif KR", "Nanum Myeongjo", Georgia, "Times New Roman", serif;
+  --display: "Playfair Display", "Noto Serif KR", Georgia, serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 44px 22px 90px; }
+
+/* ---- 제호(masthead) ---- */
+.masthead { text-align: center; border-bottom: 3px double var(--rule); padding-bottom: 18px; }
+.eyebrow {
+  display: block;
+  font-size: 12px; letter-spacing: .34em; text-transform: uppercase; color: var(--muted);
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+  padding: 7px 0; margin-bottom: 18px;
+}
+.masthead h1 {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(34px, 7vw, 60px); line-height: 1.04; letter-spacing: -.01em;
+  margin: 6px 0 14px;
+}
+.masthead .meta {
+  font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+.masthead .meta a { color: var(--accent); text-decoration: none; }
+
+/* ---- 머리글(오늘의 흐름) — 신문 스탠드퍼스트 + 드롭캡 ---- */
+.flow { border-bottom: 1px solid var(--rule); padding: 22px 0 24px; margin: 0 0 36px; }
+.flow h2 {
+  font-weight: 700; font-size: 12px; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--accent); text-align: center; margin: 0 0 14px;
+}
+.flow p { margin: 0; font-size: 18.5px; text-align: justify; }
+.flow p::first-letter {
+  float: left; font-family: var(--display); font-weight: 900;
+  font-size: 3.4em; line-height: .82; padding: 6px 12px 0 0; color: var(--ink);
+}
+
+/* ---- 섹션 제목 ---- */
+.section-title {
+  text-align: center; font-weight: 700; font-size: 13px;
+  letter-spacing: .32em; text-transform: uppercase; color: var(--ink);
+  margin: 14px 0 4px; padding-bottom: 12px; border-bottom: 1px solid var(--rule);
+}
+
+/* ---- 기사(주제) ---- */
+.card { border-bottom: 1px solid var(--hair); padding: 28px 0 24px; }
+.card:last-of-type { border-bottom: none; }
+.card-head { display: flex; gap: 16px; align-items: baseline; }
+.rank {
+  font-family: var(--display); font-weight: 900; font-size: 30px; line-height: 1;
+  color: var(--accent); min-width: 1.1em;
+}
+.card h3 {
+  font-family: var(--display); font-weight: 700;
+  font-size: clamp(22px, 3.4vw, 30px); line-height: 1.14; letter-spacing: -.01em; margin: 0;
+}
+
+/* 바이라인 형태의 메타(배지) */
+.badges {
+  margin: 12px 0 16px;
+  font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+.badge::after { content: "  ·  "; color: var(--hair); }
+.badge:last-child::after { content: ""; }
+.badge.score { color: var(--accent); font-weight: 700; }
+
+.field { margin: 13px 0; }
+.field .label {
+  display: block; font-weight: 700; font-size: 11.5px;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 3px;
+}
+.field p { margin: 0; text-align: justify; }
+
+.points { margin: 6px 0 0; padding: 0; list-style: none; }
+.points li { position: relative; padding-left: 16px; margin: 5px 0; }
+.points li::before { content: "—"; position: absolute; left: 0; color: var(--accent); }
+
+.sources { margin-top: 16px; padding-top: 13px; border-top: 1px dotted var(--hair); font-size: 14px; }
+.sources .label {
+  display: block; font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 7px;
+}
+.sources a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--hair); }
+.sources a:hover { border-bottom-color: var(--accent); }
+
+/* ---- 푸터 ---- */
+.footer {
+  text-align: center; margin-top: 50px; padding-top: 18px;
+  border-top: 3px double var(--rule);
+  font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+}
+.footer code { font-family: var(--serif); font-style: italic; letter-spacing: 0; text-transform: none; }
+
+.empty {
+  border: 1px solid var(--hair); padding: 40px; text-align: center;
+  color: var(--muted); font-style: italic;
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="masthead">
+<span class="eyebrow">Acryl Tech Blog · 오늘의 글감</span>
+<h1>아크릴 테크블로그 추천 — 2026-06-26</h1>
+<p class="meta">수집 0건 · 신규 8건 분석 · 추천 8개 · <a href="./index.html">← 전체 목록</a></p>
+</header>
+<section class="flow"><h2>🔭 오늘의 흐름</h2><p>이 글은 Claude가 직접 생성한 시드(seed) 에디션입니다 — 자동 수집 파이프라인의 첫 실행 전에, 현재 AI 업계의 큰 흐름과 아크릴 관심분야를 기준으로 추천 주제를 선별했습니다. 최근 업계는 (1) 추론 비용을 끌어내리는 서빙·경량화 기술의 표준화, (2) 롱컨텍스트·에이전트로 옮겨가는 애플리케이션 패턴, (3) 평가·신뢰성·온디바이스로 확장되는 실무 관심사가 두드러집니다. 아크릴의 Jonathan 플랫폼, 감성지능, 헬스케어 AI 강점과 직접 연결되는 주제 위주로 골랐습니다. 내일부터는 매일 아침 외신·arXiv·커뮤니티·빅테크 블로그를 실제로 수집해 갱신됩니다.</p></section>
+<h2 class="section-title">추천 주제</h2>
+<article class="card"><div class="card-head"><div class="rank">1</div><h3>추론 비용 반으로: vLLM·연속 배칭·PagedAttention 실전 가이드</h3></div><div class="badges"><span class="badge score">관련도 94/100</span><span class="badge">추론 최적화 / 서빙</span><span class="badge">중급</span><span class="badge">심층 해설 + 벤치마크</span></div><div class="field"><span class="label">기획 방향</span><p>PagedAttention과 continuous batching의 원리를 정리하고, Jonathan 서빙 스택에 적용했을 때의 처리량·지연·비용 변화를 벤치마크로 보여준다.</p></div><div class="field"><span class="label">아크릴과의 연결고리</span><p>아크릴 Jonathan 플랫폼의 LLM 서빙 단가와 직결되는 핵심 인프라 주제. 고객사 도입 시 가장 효과가 즉시 드러나는 영역.</p></div><div class="field"><span class="label">타깃 독자</span><p>ML 서빙/인프라 엔지니어</p></div><div class="field"><span class="label">다룰 포인트</span><ul class="points"><li>KV 캐시와 PagedAttention 메모리 관리</li><li>연속 배칭으로 GPU 활용률 끌어올리기</li><li>TTFT·처리량 벤치마크 설계</li><li>프로덕션 적용 시 함정(스루풋 vs 지연 트레이드오프)</li></ul></div><div class="sources"><span class="label">참고 소스</span><a href="https://blog.vllm.ai/" target="_blank" rel="noopener">vLLM 공식 블로그</a><br><a href="https://arxiv.org/abs/2309.06180" target="_blank" rel="noopener">PagedAttention 논문 (arXiv)</a><br></div></article>
+<article class="card"><div class="card-head"><div class="rank">2</div><h3>RAG는 끝났나? 100만 토큰 컨텍스트 시대의 검색 증강 재설계</h3></div><div class="badges"><span class="badge score">관련도 90/100</span><span class="badge">RAG / 검색증강</span><span class="badge">입문~중급</span><span class="badge">동향 정리 + 의견</span></div><div class="field"><span class="label">기획 방향</span><p>롱컨텍스트 모델 등장 이후 RAG의 역할 변화를 짚고, 비용·정확도·최신성 관점에서 RAG가 여전히 이기는 지점을 사례로 정리.</p></div><div class="field"><span class="label">아크릴과의 연결고리</span><p>엔터프라이즈 AI 도입 컨설팅에서 가장 많이 받는 질문. 아크릴 고객 대응 자료로 즉시 활용 가능.</p></div><div class="field"><span class="label">타깃 독자</span><p>AI 도입 실무자, 백엔드/ML 엔지니어</p></div><div class="field"><span class="label">다룰 포인트</span><ul class="points"><li>롱컨텍스트 vs RAG 비용·지연 비교</li><li>하이브리드 검색(BM25+임베딩) 전략</li><li>근거 추적·할루시네이션 억제</li><li>RAG 평가 방법론</li></ul></div><div class="sources"><span class="label">참고 소스</span><a href="https://huggingface.co/blog" target="_blank" rel="noopener">Hugging Face Blog</a><br><a href="https://arxiv.org/list/cs.CL/recent" target="_blank" rel="noopener">arXiv cs.CL 최신</a><br></div></article>
+<article class="card"><div class="card-head"><div class="rank">3</div><h3>에이전트를 실무에 태우기: 툴 유즈·멀티에이전트 오케스트레이션 패턴</h3></div><div class="badges"><span class="badge score">관련도 88/100</span><span class="badge">에이전트 / 오케스트레이션</span><span class="badge">중급~고급</span><span class="badge">아키텍처 해설</span></div><div class="field"><span class="label">기획 방향</span><p>단일 LLM 호출 → 워크플로 → 에이전트로 올라가는 의사결정 기준과, 실패를 줄이는 검증·가드레일 설계를 정리.</p></div><div class="field"><span class="label">아크릴과의 연결고리</span><p>Jonathan 위에 올릴 에이전트형 기능의 아키텍처 레퍼런스. 과도한 에이전트화의 비용/리스크도 함께 다룸.</p></div><div class="field"><span class="label">타깃 독자</span><p>AI 플랫폼/제품 엔지니어</p></div><div class="field"><span class="label">다룰 포인트</span><ul class="points"><li>언제 에이전트가 필요한가(복잡성·가치·회복가능성)</li><li>툴 설계와 권한 경계</li><li>멀티에이전트 분기·합류 패턴</li><li>관측가능성과 가드레일</li></ul></div><div class="sources"><span class="label">참고 소스</span><a href="https://www.anthropic.com/engineering" target="_blank" rel="noopener">Anthropic Engineering</a><br><a href="https://deepmind.google/discover/blog/" target="_blank" rel="noopener">Google DeepMind Blog</a><br></div></article>
+<article class="card"><div class="card-head"><div class="rank">4</div><h3>작아서 이긴다: SLM·온디바이스 AI로 비용과 프라이버시 잡기</h3></div><div class="badges"><span class="badge score">관련도 85/100</span><span class="badge">SLM / 온디바이스</span><span class="badge">중급</span><span class="badge">전략 분석 + 레시피</span></div><div class="field"><span class="label">기획 방향</span><p>소형 언어모델(SLM)과 엣지 추론이 유효한 시나리오를 비용·지연·데이터주권 관점에서 분석하고, 증류·양자화 레시피를 정리.</p></div><div class="field"><span class="label">아크릴과의 연결고리</span><p>민감정보가 많은 헬스케어·기업 내부 데이터 환경에서 아크릴이 제안할 수 있는 차별화 포인트.</p></div><div class="field"><span class="label">타깃 독자</span><p>솔루션 아키텍트, ML 엔지니어</p></div><div class="field"><span class="label">다룰 포인트</span><ul class="points"><li>SLM이 대형모델을 대체하는 작업 유형</li><li>증류·양자화로 품질 유지하기</li><li>온디바이스 추론 런타임</li><li>프라이버시·규제 관점의 이점</li></ul></div><div class="sources"><span class="label">참고 소스</span><a href="https://www.microsoft.com/en-us/research/blog/" target="_blank" rel="noopener">Microsoft Research Blog</a><br><a href="https://developer.nvidia.com/blog/" target="_blank" rel="noopener">NVIDIA Technical Blog</a><br></div></article>
+<article class="card"><div class="card-head"><div class="rank">5</div><h3>믿을 수 있는가: LLM 평가·LLM-as-Judge·MLPerf 제대로 쓰기</h3></div><div class="badges"><span class="badge score">관련도 84/100</span><span class="badge">평가 / 벤치마크</span><span class="badge">중급</span><span class="badge">방법론 가이드</span></div><div class="field"><span class="label">기획 방향</span><p>오프라인 벤치마크와 LLM-as-judge, 휴먼 평가를 언제 어떻게 조합할지, MLPerf 추론 결과를 실무 의사결정에 쓰는 법을 정리.</p></div><div class="field"><span class="label">아크릴과의 연결고리</span><p>모델·서빙 선택의 근거를 데이터로 만드는 역량은 AI 플랫폼 기업의 신뢰도와 직결.</p></div><div class="field"><span class="label">타깃 독자</span><p>ML 엔지니어, 리서처</p></div><div class="field"><span class="label">다룰 포인트</span><ul class="points"><li>LLM-as-judge의 편향과 보정</li><li>회귀 방지용 평가 하니스 설계</li><li>MLPerf 추론 지표 읽기</li><li>프로덕션 A/B와 오프라인 평가 연결</li></ul></div><div class="sources"><span class="label">참고 소스</span><a href="https://mlcommons.org/benchmarks/" target="_blank" rel="noopener">MLCommons (MLPerf) 벤치마크</a><br><a href="https://arxiv.org/list/cs.LG/recent" target="_blank" rel="noopener">arXiv cs.LG 최신</a><br></div></article>
+<article class="card"><div class="card-head"><div class="rank">6</div><h3>감정을 읽는 AI: 멀티모달 감성지능의 현재와 적용</h3></div><div class="badges"><span class="badge score">관련도 92/100</span><span class="badge">감성 AI / 멀티모달</span><span class="badge">입문~중급</span><span class="badge">심층 해설 + 적용사례</span></div><div class="field"><span class="label">기획 방향</span><p>음성·표정·텍스트를 결합한 멀티모달 감정 인식의 최신 접근과, 상담·헬스케어·CX에서의 실제 적용 및 윤리적 고려를 정리.</p></div><div class="field"><span class="label">아크릴과의 연결고리</span><p>아크릴의 핵심 정체성인 감성지능(Emotion AI)을 정면으로 다루는 시그니처 콘텐츠.</p></div><div class="field"><span class="label">타깃 독자</span><p>제품기획자, AI 엔지니어, 도입 실무자</p></div><div class="field"><span class="label">다룰 포인트</span><ul class="points"><li>멀티모달 감정 표현 학습</li><li>라벨 노이즈·문화 편향 문제</li><li>상담/CX/헬스케어 적용 사례</li><li>프라이버시·윤리 가이드라인</li></ul></div><div class="sources"><span class="label">참고 소스</span><a href="https://arxiv.org/list/cs.CL/recent" target="_blank" rel="noopener">arXiv cs.CL 최신</a><br><a href="https://ai.meta.com/blog/" target="_blank" rel="noopener">Meta AI Blog</a><br></div></article>
+<article class="card"><div class="card-head"><div class="rank">7</div><h3>임상으로 가는 의료 AI: 멀티모달 진단부터 규제·검증까지</h3></div><div class="badges"><span class="badge score">관련도 87/100</span><span class="badge">헬스케어 / 의료 AI</span><span class="badge">중급</span><span class="badge">동향 + 실무 체크리스트</span></div><div class="field"><span class="label">기획 방향</span><p>의료 영상·임상기록·바이오 신호를 다루는 멀티모달 의료 AI의 최신 흐름과, 실제 임상 도입을 막는 검증·규제·신뢰성 과제를 정리.</p></div><div class="field"><span class="label">아크릴과의 연결고리</span><p>아크릴 헬스케어 AI 사업과 직접 연결. 규제·검증 노하우는 도입 신뢰도의 핵심.</p></div><div class="field"><span class="label">타깃 독자</span><p>헬스케어 AI 기획/엔지니어, 임상 파트너</p></div><div class="field"><span class="label">다룰 포인트</span><ul class="points"><li>멀티모달 임상 데이터 통합</li><li>임상 검증·인허가 프로세스</li><li>설명가능성과 안전성</li><li>실패 사례에서 배우는 함정</li></ul></div><div class="sources"><span class="label">참고 소스</span><a href="https://research.google/blog/" target="_blank" rel="noopener">Google Research Blog</a><br><a href="https://arxiv.org/list/cs.CV/recent" target="_blank" rel="noopener">arXiv q-bio / cs.CV 최신</a><br></div></article>
+<article class="card"><div class="card-head"><div class="rank">8</div><h3>양자화의 모든 것: INT4·FP8로 추론을 가속하는 법</h3></div><div class="badges"><span class="badge score">관련도 82/100</span><span class="badge">경량화 / 양자화</span><span class="badge">중급~고급</span><span class="badge">튜토리얼 + 벤치마크</span></div><div class="field"><span class="label">기획 방향</span><p>weight-only vs activation 양자화, FP8/INT4의 품질-속도 트레이드오프와 실측 레시피를 정리하고 서빙 스택에서의 적용을 다룬다.</p></div><div class="field"><span class="label">아크릴과의 연결고리</span><p>추론 단가를 직접 낮추는 또 다른 레버. 1번(서빙)과 묶어 시리즈로 운영하기 좋음.</p></div><div class="field"><span class="label">타깃 독자</span><p>ML 엔지니어, 인프라 엔지니어</p></div><div class="field"><span class="label">다룰 포인트</span><ul class="points"><li>weight-only vs full 양자화</li><li>FP8·INT4 정확도 손실 관리</li><li>캘리브레이션·QAT 개요</li><li>서빙 런타임 호환성</li></ul></div><div class="sources"><span class="label">참고 소스</span><a href="https://developer.nvidia.com/blog/" target="_blank" rel="noopener">NVIDIA Technical Blog</a><br><a href="https://huggingface.co/blog" target="_blank" rel="noopener">Hugging Face Blog</a><br></div></article>
+<footer class="footer">매일 자동 생성됩니다. 설정은 <code>config/</code> 폴더에서 수정할 수 있어요.</footer>
+</div>
+</body>
+</html>
