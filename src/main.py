@@ -1,16 +1,19 @@
-"""엔트리포인트: 수집 -> 중복제거 -> 분석 -> Markdown 리포트 저장.
+"""엔트리포인트: 수집 -> 중복제거 -> 분석 -> Markdown + HTML 리포트 + 인덱스.
 
 실행: python -m src.main
 필요 환경변수: ANTHROPIC_API_KEY
 """
 from __future__ import annotations
 
+import json
 import sys
 from datetime import datetime, timezone
 
 from . import analyzer, dedup, report
 from .collectors import collect_all
 from .config import REPORTS_DIR, extra_urls, load_profile, load_sources
+
+INDEX_JSON = REPORTS_DIR / "index.json"
 
 
 def _today() -> str:
@@ -42,41 +45,45 @@ def main() -> int:
     print("[3/4] Claude 분석 중...")
     data = analyzer.analyze(new_items, profile)
 
-    print("[4/4] 리포트 저장 중...")
-    stats = {"collected": len(items), "new": len(new_items)}
-    markdown = report.build_markdown(date_str, data, stats)
-
+    print("[4/4] 리포트 & 인덱스 저장 중...")
     REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = REPORTS_DIR / f"{date_str}.md"
-    out_path.write_text(markdown, encoding="utf-8")
-    print(f"  저장 완료: {out_path}")
+    stats = {"collected": len(items), "new": len(new_items)}
+    n_topics = len(data.get("topics", []))
 
-    # 추천에 사용된 소스 URL을 '본 것'으로 기록(다음 실행에서 중복 방지)
-    used_urls: list[str] = []
-    for t in data.get("topics", []):
-        for s in t.get("sources", []):
-            if s.get("url"):
-                used_urls.append(s["url"])
-    dedup.save_seen(seen, used_urls)
+    (REPORTS_DIR / f"{date_str}.md").write_text(
+        report.build_markdown(date_str, data, stats), encoding="utf-8"
+    )
+    (REPORTS_DIR / f"{date_str}.html").write_text(
+        report.build_html(date_str, data, stats), encoding="utf-8"
+    )
+    print(f"  저장: {date_str}.md / {date_str}.html (추천 {n_topics}개)")
 
-    _update_index(date_str, len(data.get("topics", [])))
+    _rebuild_index(date_str, n_topics)
+
+    # 추천에 쓰인 소스 URL을 기록 -> 다음 실행 중복 방지
+    used = [s["url"] for t in data.get("topics", []) for s in t.get("sources", []) if s.get("url")]
+    dedup.save_seen(seen, used)
+
     print("=== 완료 ===")
     return 0
 
 
-def _update_index(date_str: str, n_topics: int) -> None:
-    """reports/README.md 에 최신 리포트 링크를 위에 추가한다."""
-    index = REPORTS_DIR / "README.md"
-    header = "# 📚 일일 글감 추천 리포트\n\n"
-    entry = f"- [{date_str}](./{date_str}.md) — 추천 {n_topics}개\n"
+def _rebuild_index(date_str: str, n_topics: int) -> None:
+    """index.json 갱신 후 reports/index.html(목록 페이지)을 다시 생성."""
+    entries: dict[str, dict] = {}
+    if INDEX_JSON.exists():
+        try:
+            for e in json.loads(INDEX_JSON.read_text(encoding="utf-8")):
+                entries[e["date"]] = e
+        except Exception:  # noqa: BLE001
+            pass
+    entries[date_str] = {"date": date_str, "topics": n_topics}
 
-    existing = ""
-    if index.exists():
-        text = index.read_text(encoding="utf-8")
-        existing = text[len(header):] if text.startswith(header) else text
-    # 같은 날짜 줄이 이미 있으면 갱신
-    lines = [ln for ln in existing.splitlines(keepends=True) if f"({date_str}.md)" not in ln]
-    index.write_text(header + entry + "".join(lines), encoding="utf-8")
+    ordered = sorted(entries.values(), key=lambda e: e["date"], reverse=True)
+    INDEX_JSON.write_text(
+        json.dumps(ordered, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
+    (REPORTS_DIR / "index.html").write_text(report.build_index(ordered), encoding="utf-8")
 
 
 if __name__ == "__main__":

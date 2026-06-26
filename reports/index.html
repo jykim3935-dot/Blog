@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>아크릴 테크블로그 — 일일 글감 추천</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+/* =============================================================================
+   리포트 테마 — 이 파일 하나만 고치면 HTML 리포트 디자인이 통째로 바뀝니다.
+   색/폰트/간격은 아래 :root 변수에서 조정하세요.
+   ============================================================================= */
+:root {
+  --bg: #f5f4ef;          /* 페이지 배경 */
+  --surface: #ffffff;     /* 카드 배경 */
+  --ink: #1c1c1e;         /* 본문 글자 */
+  --muted: #70706e;       /* 보조 글자 */
+  --accent: #1f6f5c;      /* 포인트 컬러 */
+  --accent-soft: #e4efe9; /* 포인트 연한 배경 */
+  --line: #e7e5dd;        /* 구분선 */
+  --radius: 18px;
+  --shadow: 0 1px 2px rgba(20, 20, 20, .04), 0 10px 30px rgba(20, 20, 20, .06);
+  --maxw: 860px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--maxw); margin: 0 auto; padding: 56px 24px 96px; }
+
+/* ---- 헤더 ---- */
+.masthead { margin-bottom: 40px; }
+.eyebrow {
+  display: inline-block;
+  font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 6px 12px; border-radius: 999px;
+  margin-bottom: 18px;
+}
+.masthead h1 {
+  font-size: clamp(28px, 5vw, 42px);
+  line-height: 1.2; font-weight: 800; letter-spacing: -.02em;
+  margin: 0 0 12px;
+}
+.masthead .meta { color: var(--muted); font-size: 15px; }
+
+/* ---- 오늘의 흐름 ---- */
+.flow {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 22px 26px;
+  margin: 32px 0 44px;
+  box-shadow: var(--shadow);
+}
+.flow h2 { margin: 0 0 8px; font-size: 16px; color: var(--accent); }
+.flow p { margin: 0; color: #34342f; }
+
+/* ---- 섹션 제목 ---- */
+.section-title {
+  font-size: 14px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 20px; padding-bottom: 10px; border-bottom: 1px solid var(--line);
+}
+
+/* ---- 주제 카드 ---- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px 30px;
+  margin-bottom: 22px;
+  box-shadow: var(--shadow);
+}
+.card-head { display: flex; gap: 14px; align-items: flex-start; }
+.rank {
+  flex: 0 0 auto;
+  width: 34px; height: 34px; border-radius: 10px;
+  background: var(--accent); color: #fff;
+  font-weight: 700; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 4px;
+}
+.card h3 { margin: 0; font-size: 21px; font-weight: 750; letter-spacing: -.01em; }
+
+.badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 6px; }
+.badge {
+  font-size: 12.5px; font-weight: 600;
+  color: var(--muted); background: #f1f0ea;
+  border: 1px solid var(--line);
+  padding: 4px 11px; border-radius: 999px;
+}
+.badge.score { color: #fff; background: var(--accent); border-color: var(--accent); }
+
+.field { margin: 14px 0; }
+.field .label {
+  font-size: 12.5px; font-weight: 700; letter-spacing: .04em;
+  color: var(--accent); text-transform: uppercase;
+  display: block; margin-bottom: 3px;
+}
+.field p { margin: 0; }
+
+.points { margin: 8px 0 0; padding-left: 20px; }
+.points li { margin: 4px 0; }
+
+.sources { margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--line); }
+.sources .label {
+  font-size: 12.5px; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .04em; display: block; margin-bottom: 8px;
+}
+.sources a {
+  display: inline-block; margin: 2px 0; color: var(--accent);
+  text-decoration: none; border-bottom: 1px solid transparent;
+}
+.sources a:hover { border-bottom-color: var(--accent); }
+
+/* ---- 푸터 ---- */
+.footer { margin-top: 48px; color: var(--muted); font-size: 13px; text-align: center; }
+
+.empty {
+  background: var(--surface); border: 1px dashed var(--line);
+  border-radius: var(--radius); padding: 40px; text-align: center; color: var(--muted);
+}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="masthead">
+<span class="eyebrow">Acryl Tech Blog</span>
+<h1>📚 일일 글감 추천</h1>
+<p class="meta">외신·AI 커뮤니티·arXiv·빅테크 블로그를 매일 분석해 블로그 글감을 추천합니다.</p>
+</header>
+<h2 class="section-title">리포트</h2>
+<div class="empty">아직 생성된 리포트가 없습니다. 곧 첫 리포트가 올라옵니다.</div>
+<footer class="footer">Powered by Claude · 매일 자동 갱신</footer>
+</div>
+</body>
+</html>
